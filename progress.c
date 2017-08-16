@@ -1,14 +1,10 @@
+/**
+@file progress.c
+@brief A progress bar adapted from https://github.com/jwerle/progress.c
+*/
 #include "progress.h"
 
-/**
- * Implementation
- */
-
-
-#if __STDC_VERSION__ >= 199901L
-#define C99
-char *
-strdup (const char *str) {
+char * _strdup (const char *str) {
   char *cpy = NULL;
 
   if (str) {
@@ -18,7 +14,6 @@ strdup (const char *str) {
 
   return cpy;
 }
-#endif
 
 /*
  * Get current Unix timestamp with timespec format
@@ -55,7 +50,7 @@ replace_str (char *strbuf, char *strold, char *strnew) {
 
   if (!strbuf) return NULL;
   if (!strold || !strnew || !(p = strstr(strbuf, strold)))
-     return strdup(strbuf);
+     return _strdup(strbuf);
 
   size_t szold = strlen(strold);
   size_t sznew = strlen(strnew);
